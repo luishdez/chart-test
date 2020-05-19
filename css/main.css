@@ -1,0 +1,14 @@
+body {
+  background: #0D296E;
+  color: #fff;
+}
+
+.chart {
+  margin: auto;
+  width: 400px;
+}
+
+.logo-splash {
+  max-width: 260px;
+  text-align: center;
+}

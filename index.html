@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div class="text-center p-5">
+    <div class="chart">
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <a class="btn btn-default mr-2" id="data1">Data 1</a>
+    <a class="btn btn-default mr-2" id="data2">Data 2</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    var dataInit = {
+      labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+      datasets: [{
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        data: [80, 55, 50, 30, 50, 75, 40, 65]
+      }]
+    }
+
+    var setA = [80, 55, 50, 30, 50, 75, 40, 65];
+    var setB = [30, 25, 20, 15, 15, 40, 10, 40];
+
+    var ctx = document.getElementById('myChart');
+    var myRadarChart = new Chart(ctx, {
+      type: 'radar',
+      data: dataInit,
+      options: {
+        tooltips: {
+          callbacks: {
+            title: function() { return '';},
+            label: function(tooltipItem, data) {
+              var value = tooltipItem.value;
+              switch(tooltipItem.index) {
+                case 0:
+                  return ' Dolor de Cabeza: ' + value + '%';
+                case 1:
+                  return ' Torpeza mental: ' + value + '%';
+                case 2:
+                  return ' Irritabilidad: ' + value + '%';
+                case 3:
+                  return ' Taquicardia: ' + value + '%';
+                case 4:
+                  return ' Mareo: ' + value + '%';
+                case 5:
+                  return ' Fatiga: ' + value + '%';
+                case 6:
+                  return ' Nausea: ' + value + '%';
+                case 7:
+                  return ' Sed: ' + value + '%';
+              }
+
+              return label;
+            }
+          },
+        },
+        legend: {
+            display: false,
+        },
+        scale: {
+          angleLines: {
+            color: 'rgba(255, 255, 255, 0.1)',
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.5)',
+          },
+          ticks: {
+            backdropColor: '#fff',
+            fontColor: '#fff',
+            backdropPaddingX: -115,
+            fontSize: 8,
+            min: 10,
+            max: 100,
+            stepSize: 25,
+            showLabelBackdrop: false,
+            callback: (value) => { return value + '%'},
+          },
+          pointLabels: {
+            fontColor: 'rgba(255, 255, 255, 0.2)',
+          }
+        }
+      }
+    });
+
+    $('#data1').click(() => {
+      console.log('data2')
+      myRadarChart.data.datasets[0].data = setA;
+      myRadarChart.update();
+
+      // myRadarChart.data = dataAlt;
+    })
+
+    $('#data2').click(() => {
+      console.log('data2')
+      myRadarChart.data.datasets[0].data = setB;
+      myRadarChart.update();
+
+      // myRadarChart.data = dataAlt;
+    })
+  </script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

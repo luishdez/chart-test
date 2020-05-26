@@ -40,16 +40,17 @@
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
   <script>
-    var dataInit = {
-      labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
-      datasets: [{
-        backgroundColor: 'rgba(255, 255, 255, 0.6)',
-        data: [80, 55, 50, 30, 50, 75, 40, 65]
-      }]
-    }
 
     var setA = [80, 55, 50, 30, 50, 75, 40, 65];
     var setB = [30, 25, 20, 15, 15, 40, 10, 40];
+
+    var dataInit = {
+      labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+      datasets: [{
+        backgroundColor: 'rgba(192, 233, 211, 0.7)',
+        data: setA,
+      }]
+    }
 
     var ctx = document.getElementById('myChart');
     var myRadarChart = new Chart(ctx, {
@@ -95,18 +96,17 @@
             color: 'rgba(255, 255, 255, 0.5)',
           },
           ticks: {
-            backdropColor: '#fff',
+            backdropColor: '#0D296E',
             fontColor: '#fff',
-            backdropPaddingX: -115,
-            fontSize: 8,
+            fontSize: 9,
             min: 10,
             max: 100,
             stepSize: 25,
-            showLabelBackdrop: false,
+            showLabelBackdrop: true,
             callback: (value) => { return value + '%'},
           },
           pointLabels: {
-            fontColor: 'rgba(255, 255, 255, 0.2)',
+            fontColor: 'rgba(255, 255, 255, 0.4)',
           }
         }
       }
